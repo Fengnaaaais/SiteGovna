@@ -1,0 +1,17 @@
+{% block header %}
+    <header>
+        <p>Выберите категорию</p>
+        {% for category in categories %}
+            <a href="{% url 'us_news:category' category.id %}">
+                {{ category }}
+            </a>
+        {% endfor %}
+        <form action="{% url "us_news:news" %}" 
+            method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </header>
+{% endblock %}
+{% include "us_news/base.html" %}
